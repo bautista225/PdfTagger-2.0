@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D32A1802-B555-43D4-BB04-A49F6DFECC11}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PdfTagger</RootNamespace>
+    <AssemblyName>PdfTagger</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\PdfTagger.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\Dat\Met\Bus\InvoiceMetadata.cs" />
+    <Compile Include="Src\Dat\Metadata.cs" />
+    <Compile Include="Src\Dat\IMetadata.cs" />
+    <Compile Include="Src\Dat\PdfCompare.cs" />
+    <Compile Include="Src\Dat\PdfCompareInfo.cs" />
+    <Compile Include="Src\Dat\PdfCompareResult.cs" />
+    <Compile Include="Src\Dat\Txt\BusinessInvoiceHierarchySet.cs" />
+    <Compile Include="Src\Dat\Txt\BusinessHierarchySet.cs" />
+    <Compile Include="Src\Dat\Txt\Converter.cs" />
+    <Compile Include="Src\Dat\Txt\DefaultAmountConverter.cs" />
+    <Compile Include="Src\Dat\Txt\ExtendedDateConverter.cs" />
+    <Compile Include="Src\Dat\Txt\DefaultDateConverter.cs" />
+    <Compile Include="Src\Dat\Txt\DefaultTextConverter.cs" />
+    <Compile Include="Src\Dat\Txt\IHierarchySet.cs" />
+    <Compile Include="Src\Dat\Txt\HierarchySet.cs" />
+    <Compile Include="Src\Dat\Txt\IConverter.cs" />
+    <Compile Include="Src\Dat\Txt\ITextBoundMatch.cs" />
+    <Compile Include="Src\Dat\Txt\ITextParserHierarchy.cs" />
+    <Compile Include="Src\Dat\Txt\ITextMatch.cs" />
+    <Compile Include="Src\Dat\Txt\TextBoundMatch.cs" />
+    <Compile Include="Src\Dat\Txt\TextParser.cs" />
+    <Compile Include="Src\Dat\Txt\TextParserHierarchy.cs" />
+    <Compile Include="Src\Dat\Txt\TextParserMatch.cs" />
+    <Compile Include="Src\Dat\Txt\TxtRegex.cs" />
+    <Compile Include="Src\Pat\PdfTagExtractionItemResult.cs" />
+    <Compile Include="Src\Pat\PdfTagExtractionResult.cs" />
+    <Compile Include="Src\Pat\PdfTagPattern.cs" />
+    <Compile Include="Src\Pat\PdfTagPatternFactory.cs" />
+    <Compile Include="Src\Pat\PdfTagPatternStore.cs" />
+    <Compile Include="Src\Pdf\PdfColorFontRectangleTextExtractorStrategy.cs" />
+    <Compile Include="Src\Pdf\PdfColorFontTextChunk.cs" />
+    <Compile Include="Src\Pdf\PdfColorFontTextRectangle.cs" />
+    <Compile Include="Src\Pdf\PdfTextChunk.cs" />
+    <Compile Include="Src\Pdf\PdfTextBaseRectangle.cs" />
+    <Compile Include="Src\Pdf\PdfTextRectangle.cs" />
+    <Compile Include="Src\Pdf\PdfTextRectangleTextExtractionStrategy.cs" />
+    <Compile Include="Src\Pdf\PdfUnstructuredDoc.cs" />
+    <Compile Include="Src\Pdf\PdfUnstructuredPage.cs" />
+    <Compile Include="Src\Settings.cs" />
+    <Compile Include="Src\Xml\XmlParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Doc\Help\PdfTagger.chm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Documents\GitHub\itextsharp\src\core\itextsharp.csproj">
+      <Project>{84c4fdd9-3ed7-453b-b9da-b3ed52cb071c}</Project>
+      <Name>itextsharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

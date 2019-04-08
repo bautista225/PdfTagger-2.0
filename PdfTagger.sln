@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfTagger", "PdfTagger\PdfTagger.csproj", "{D32A1802-B555-43D4-BB04-A49F6DFECC11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfTaggerTest", "PdfTaggerTest\PdfTaggerTest.csproj", "{44A9496D-9B76-48AD-9381-0B29781E6E5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itextsharp", "..\..\..\Documents\GitHub\itextsharp\src\core\itextsharp.csproj", "{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_woDrawing|Any CPU = Debug_woDrawing|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release_woDrawing|Any CPU = Release_woDrawing|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Debug_woDrawing|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Debug_woDrawing|Any CPU.Build.0 = Debug|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Release_woDrawing|Any CPU.ActiveCfg = Release|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Release_woDrawing|Any CPU.Build.0 = Release|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32A1802-B555-43D4-BB04-A49F6DFECC11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Debug_woDrawing|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Debug_woDrawing|Any CPU.Build.0 = Debug|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Release_woDrawing|Any CPU.ActiveCfg = Release|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Release_woDrawing|Any CPU.Build.0 = Release|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A9496D-9B76-48AD-9381-0B29781E6E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Debug_woDrawing|Any CPU.ActiveCfg = Debug_woDrawing|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Debug_woDrawing|Any CPU.Build.0 = Debug_woDrawing|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Release_woDrawing|Any CPU.ActiveCfg = Release_woDrawing|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Release_woDrawing|Any CPU.Build.0 = Release_woDrawing|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DDB8CD7-171B-43C5-A1B6-DEB59FEA20BA}
+	EndGlobalSection
+EndGlobal

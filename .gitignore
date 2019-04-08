@@ -1,0 +1,5 @@
+.vs/**
+PdfTagger/bin/**
+PdfTagger/obj/**
+PdfTaggerTest/bin/**
+PdfTaggerTest/obj/**
