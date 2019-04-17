@@ -70,6 +70,17 @@ namespace PdfTagger.Pat
         }
 
         /// <summary>
+        /// Número de falsos positivos asociados al patrón.
+        /// </summary>
+        public int ErrorsCount
+        {
+            get
+            {
+                return Pattern.ErrorsCount;
+            }
+        }
+
+        /// <summary>
         /// Valor encontrado.
         /// </summary>
         public object Value { get; set; }
@@ -101,6 +112,44 @@ namespace PdfTagger.Pat
 
             if (input == null)
                 throw new ArgumentException("Parámetro de tipo incorrecto.");
+            
+
+            if ((MatchesCount - ErrorsCount) > (input.MatchesCount - input.ErrorsCount))
+            {
+                return -1;
+            }
+
+            else if ((MatchesCount - ErrorsCount) == (input.MatchesCount - input.ErrorsCount))
+            {
+                if (MatchesCount > input.MatchesCount)
+                    return -1;
+
+                else if (MatchesCount == input.MatchesCount)
+                {
+                    // Ordenamos los patrones según su tipo con tal de evitar falsos positivos
+                    if (SourceTypeNameOrder[Pattern.SourceTypeName] > SourceTypeNameOrder[input.Pattern.SourceTypeName])
+                        return -1;
+                    else if (SourceTypeNameOrder[Pattern.SourceTypeName] < SourceTypeNameOrder[input.Pattern.SourceTypeName])
+                        return 1;
+                    else
+                        return 0;
+                }
+                else
+                    return 1;
+            }   
+            else
+                return 1;
+        }
+
+        /*public int CompareTo(object obj)
+        {
+            if (this == obj)
+                return 0;
+
+            PdfTagExtractionItemResult input = (obj as PdfTagExtractionItemResult);
+
+            if (input == null)
+                throw new ArgumentException("Parámetro de tipo incorrecto.");
 
             if (MatchesCount > input.MatchesCount)
                 return -1;
@@ -116,7 +165,7 @@ namespace PdfTagger.Pat
                 else
                     return 0;
             }
-        }
+        }*/
 
         /// <summary>
         /// Sirve como la función hash predeterminada.
@@ -181,7 +230,7 @@ namespace PdfTagger.Pat
         /// <returns>UNa representación texttual de la instancia.</returns>
         public override string ToString()
         {
-            return $"{Pattern.MetadataItemName}, {MatchesCount}";
+            return $"{Pattern.MetadataItemName}, {MatchesCount}, {ErrorsCount}";
         }
 
     }

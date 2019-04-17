@@ -154,6 +154,7 @@ namespace PdfTagger.Pdf
                                 {
                                     Text = sb.ToString().Trim()
                                 });
+                                
                             }
                             else
                             {   // En caso contrario, lo guardo separado.
@@ -171,8 +172,9 @@ namespace PdfTagger.Pdf
 
                                 CFWordGroups.Add(new PdfColorFontTextRectangle(chunk.FillColor, chunk.StrokeColor, chunk.FontName, chunk.FontSize, rec)
                                 {
-                                    Text = sb.ToString().Trim()
+                                    Text = sb.ToString().Trim(),
                                 });
+                                
                             }
                         }
                         else

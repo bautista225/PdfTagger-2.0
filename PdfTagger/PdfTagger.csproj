@@ -46,6 +46,7 @@
     <Compile Include="Src\Dat\Met\Bus\InvoiceMetadata.cs" />
     <Compile Include="Src\Dat\Metadata.cs" />
     <Compile Include="Src\Dat\IMetadata.cs" />
+    <Compile Include="Src\Dat\PdfCheckResult.cs" />
     <Compile Include="Src\Dat\PdfCompare.cs" />
     <Compile Include="Src\Dat\PdfCompareInfo.cs" />
     <Compile Include="Src\Dat\PdfCompareResult.cs" />

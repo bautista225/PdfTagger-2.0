@@ -99,7 +99,6 @@ namespace PdfTagger.Pat
 
             foreach (var page in pdf.PdfUnstructuredPages)
             {
-
                 ExtractFromRectangles(page.WordGroups,
                     result.MetadataType, hierarchySet, result);
 
@@ -110,7 +109,6 @@ namespace PdfTagger.Pat
 
                 ExtractFromColorFontText(page.ColorFontWordGroups,
                     result.MetadataType, hierarchySet, result);
-
             }
 
             result.Converters = _Converters;
@@ -118,7 +116,43 @@ namespace PdfTagger.Pat
             result.GetMetadata();
 
             return result;
+        }
 
+        /// <summary>
+        /// Extrae el texto con los patrones aprendidos con tal de comparar si son falsos positivos.
+        /// </summary>
+        /// <param name="checkResult">PdfCheckResult para comparar los falsos positivos.</param>
+        /// <returns></returns>
+        public List<PdfTagPattern> ExtractToCheck(PdfCheckResult checkResult)
+        {
+
+            PdfTagExtractionResult result = new PdfTagExtractionResult()
+            {
+                Pdf = checkResult.Pdf,
+                MetadataType = Type.GetType(MetadataName)
+            };
+
+            _Converters = new Dictionary<Type, object>();
+
+            IHierarchySet hierarchySet = GetHierarchySet();
+
+            foreach (var page in checkResult.Pdf.PdfUnstructuredPages)
+            {
+                ExtractFromRectangles(page.WordGroups,
+                    result.MetadataType, hierarchySet, result);
+
+                ExtractFromRectangles(page.Lines,
+                    result.MetadataType, hierarchySet, result, "LinesInfos");
+
+                ExtractFromText(result.MetadataType, result, page, hierarchySet);
+
+                ExtractFromColorFontText(page.ColorFontWordGroups,
+                    result.MetadataType, hierarchySet, result);
+            }
+
+            result.Converters = _Converters;
+            
+            return result.CheckWithRightMetadata(checkResult.InvoiceMetadata); // Comprobamos que los patrones que pasemos como resultado hayan extraído el texto correctamente.
         }
 
         /// <summary>
@@ -279,34 +313,40 @@ namespace PdfTagger.Pat
                         if (pdfDocColorFontWord.FillColor == pattern.FillColor &&
                             pdfDocColorFontWord.StrokeColor == pattern.StrokeColor &&
                             pdfDocColorFontWord.FontName == pattern.FontName &&
-                            pdfDocColorFontWord.FontSize.ToString() == pattern.FontSize) // Comprobamos que tienen el mismo color, tamaño y nombre de fuente.
+                            pdfDocColorFontWord.FontSize.ToString() == pattern.FontSize
+                            ) // Comprobamos que tienen el mismo color, tamaño y nombre de fuente. 
+                              // No comprobamos el CFType porque cuando llega aquí, pdfDocColorFontWord no tiene un CFType asignado aún.
                         {
-                            string textInput = pdfDocColorFontWord.Text;
-                            PropertyInfo pInf = metadataType.GetProperty(pattern.MetadataItemName);
-                            ITextParserHierarchy parserHierarchy = hierarchySet.GetParserHierarchy(pInf);
-
-                            if (pInf.PropertyType == typeof(string))
-                                parserHierarchy.SetParserRegexPattern(0, pattern.RegexPattern);
-
-                            dynamic converter = parserHierarchy.GetConverter(pattern.RegexPattern);
-
-                            MatchCollection matches = Regex.Matches(pdfDocColorFontWord.Text, pattern.RegexPattern);
-
-                            string val = (pattern.Position < matches.Count) ?
-                                matches[pattern.Position].Value : null;
-
-                            object pValue = null;
-
-                            if (val != null && converter != null)
-                                pValue = converter.Convert(val);
-
-                            if (pValue != null && !PdfCompare.IsZeroNumeric(pValue))
+                            if (pattern.CFType.Equals("NA") ||
+                                (pattern.CFType.Equals("X") && (pattern.PdfRectangle.Llx.Equals(pdfDocColorFontWord.Llx) || pattern.PdfRectangle.Urx.Equals(pdfDocColorFontWord.Urx))) ||
+                                (pattern.CFType.Equals("Y") && (pattern.PdfRectangle.Lly.Equals(pdfDocColorFontWord.Lly) || pattern.PdfRectangle.Ury.Equals(pdfDocColorFontWord.Ury))))
                             {
-                                result.AddResult(pattern, pValue);
-                                if (!_Converters.ContainsKey(pInf.PropertyType))
-                                    _Converters.Add(pInf.PropertyType, converter);
-                            }
+                                string textInput = pdfDocColorFontWord.Text;
+                                PropertyInfo pInf = metadataType.GetProperty(pattern.MetadataItemName);
+                                ITextParserHierarchy parserHierarchy = hierarchySet.GetParserHierarchy(pInf);
 
+                                if (pInf.PropertyType == typeof(string))
+                                    parserHierarchy.SetParserRegexPattern(0, pattern.RegexPattern);
+
+                                dynamic converter = parserHierarchy.GetConverter(pattern.RegexPattern);
+
+                                MatchCollection matches = Regex.Matches(pdfDocColorFontWord.Text, pattern.RegexPattern);
+
+                                string val = (pattern.Position < matches.Count) ?
+                                    matches[pattern.Position].Value : null;
+
+                                object pValue = null;
+
+                                if (val != null && converter != null)
+                                    pValue = converter.Convert(val);
+
+                                if (pValue != null && !PdfCompare.IsZeroNumeric(pValue))
+                                {
+                                    result.AddResult(pattern, pValue);
+                                    if (!_Converters.ContainsKey(pInf.PropertyType))
+                                        _Converters.Add(pInf.PropertyType, converter);
+                                }
+                            }
                         }
                     }
                 }

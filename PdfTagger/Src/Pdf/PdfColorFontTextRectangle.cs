@@ -76,6 +76,11 @@ namespace PdfTagger.Pdf
         /// </summary>
         public double? FontSize { get; private set; }
 
+        /// <summary>
+        /// Tipo de patron: genérico, con X, con Y.
+        /// </summary>
+        public string Type { get; set; }
+
         #endregion
 
         #region Public Methods

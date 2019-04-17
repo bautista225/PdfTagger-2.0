@@ -56,6 +56,7 @@ namespace PdfTagger.Pat
         public PdfTagPattern()
         {
             MatchesCount = 1;
+            ErrorsCount = 0;
         }
 
         #endregion
@@ -112,6 +113,11 @@ namespace PdfTagger.Pat
         public int MatchesCount { get; set; }
 
         /// <summary>
+        /// Número de falsos positivos acumulados del patrón.
+        /// </summary>
+        public int ErrorsCount { get; set; }
+
+        /// <summary>
         /// Color del texto.
         /// </summary>
         public string FillColor { get; set; }
@@ -130,6 +136,11 @@ namespace PdfTagger.Pat
         /// Tamaño de la fuente.
         /// </summary>
         public string FontSize { get; set; }
+
+        /// <summary>
+        /// Tipo de PdfColorFontTextRectangle
+        /// </summary>
+        public string CFType { get; set; }
 
         #endregion
 
@@ -158,12 +169,38 @@ namespace PdfTagger.Pat
             if (input == null)
                 throw new ArgumentException("Parámetro de tipo incorrecto.");
 
+            if ((MatchesCount - ErrorsCount) > (input.MatchesCount - input.ErrorsCount))
+            {
+                return -1;
+            }
+            else if ((MatchesCount - ErrorsCount) == (input.MatchesCount - input.ErrorsCount))
+            {
+                if (MatchesCount > input.MatchesCount)
+                    return -1;
+                
+                else
+                    return 1;
+            }
+            else
+                return 1;
+        }
+
+        /*public int CompareTo(object obj)
+        {
+            if (this == obj)
+                return 0;
+
+            PdfTagPattern input = (obj as PdfTagPattern);
+
+            if (input == null)
+                throw new ArgumentException("Parámetro de tipo incorrecto.");
+
             if (MatchesCount > input.MatchesCount)
                 return -1;
             else
                 return 1;
 
-        }
+        }*/
 
         /// <summary>
         /// Determina si el objeto especificado es igual al objeto actual.
@@ -181,8 +218,27 @@ namespace PdfTagger.Pat
             bool equalsRectangle = false;
 
             if (SourceTypeName.Equals("ColorFontWordGroupsInfos"))
-            {
-                equalsRectangle = true;
+            {   if (CFType == input.CFType)
+                {
+                    if (CFType == "X")
+                    {
+                        if (PdfRectangle.Llx == input.PdfRectangle.Llx || PdfRectangle.Urx == input.PdfRectangle.Urx)
+                        {
+                            equalsRectangle = true;
+                        }
+                    }
+                    else if (CFType == "Y")
+                    {
+                        if (PdfRectangle.Lly == input.PdfRectangle.Lly || PdfRectangle.Ury == input.PdfRectangle.Ury)
+                        {
+                            equalsRectangle = true;
+                        }
+                    }
+                    else
+                    {
+                        equalsRectangle = true;
+                    }
+                }
             }
             else if (PdfRectangle == null)
             {
@@ -205,7 +261,8 @@ namespace PdfTagger.Pat
                     FillColor == input.FillColor &&
                     StrokeColor == input.StrokeColor &&
                     FontName == input.FontName &&
-                    FontSize == input.FontSize);
+                    FontSize == input.FontSize &&
+                    CFType == input.CFType);
             else
                 return (MetadataItemName == input.MetadataItemName &&
                     PdfPageN == input.PdfPageN &&
@@ -247,7 +304,7 @@ namespace PdfTagger.Pat
         /// <returns>Devuelve una cadena que representa el objeto actual.</returns>
         public override string ToString()
         {
-            return $"({MatchesCount}) {MetadataItemName}";
+            return $"({MatchesCount}) ({ErrorsCount}) {MetadataItemName}";
         }
 
         #endregion

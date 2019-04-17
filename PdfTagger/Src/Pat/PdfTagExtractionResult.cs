@@ -133,6 +133,32 @@ namespace PdfTagger.Pat
         }
 
         /// <summary>
+        /// Comprobamos que los datos insertados sean los correctos mediante datos de entrada revisados, actualizando posteriormente el registro de errores de los patrones.
+        /// </summary>
+        public List<PdfTagPattern> CheckWithRightMetadata(Dictionary<string, string> invoiceMetadata)
+        {
+            foreach (var resulList in Results)
+                resulList.Value.Sort();
+
+            List<PdfTagPattern> patterns = new List<PdfTagPattern>();
+
+            foreach (PropertyInfo pInf in MetadataType.GetProperties())
+            {
+                if (Results.ContainsKey(pInf.Name) && invoiceMetadata.ContainsKey(pInf.Name))
+                    if (Results[pInf.Name].Count > 0)
+                    {
+                        for (int i = 0; i < Results[pInf.Name].Count; i++)
+                        {
+                            if (!Results[pInf.Name][i].Value.Equals(invoiceMetadata[pInf.Name]))
+                                patterns.Add(Results[pInf.Name][i].Pattern);
+                        }
+                    }
+            }
+
+            return patterns;
+        }
+
+        /// <summary>
         /// Devuelve un objeto de metadatos propuesto
         /// con los valores de la extracción.
         /// </summary>
@@ -156,33 +182,37 @@ namespace PdfTagger.Pat
                     {
                         for (int i = 0; i < Results[pInf.Name].Count; i++)
                         {
-                            if (Results[pInf.Name][i].Pattern.SourceTypeName != "ColorFontWordGroupsInfos")
-                            {
-                                pInf.SetValue(Metadata, Results[pInf.Name][i].Value);
-                                metadatas[pInf.Name] = true;
-                                break;
-                            }
+                            pInf.SetValue(Metadata, Results[pInf.Name][i].Value);
+                            metadatas[pInf.Name] = true;
+                            break;
+
+                            //if (Results[pInf.Name][i].Pattern.SourceTypeName != "ColorFontWordGroupsInfos")
+                            //{
+                            //    pInf.SetValue(Metadata, Results[pInf.Name][i].Value);
+                            //    metadatas[pInf.Name] = true;
+                            //    break;
+                            //}
                         }
                     }
             }
 
-            // Rellenamos los pInf vacíos con los posibles valores de ColorFontWordGroupsInfos.
-            foreach (PropertyInfo pInf in MetadataType.GetProperties())
-                if (Results.ContainsKey(pInf.Name))
-                    if (!metadatas[pInf.Name]) // Devuelve false si no se ha rellenado en el bucle anterior.
-                    {
-                        if (Results[pInf.Name].Count > 0)
-                        {
-                            for (int i = 0; i < Results[pInf.Name].Count; i++)
-                            {
-                                if (Results[pInf.Name][i].Pattern.SourceTypeName == "ColorFontWordGroupsInfos")
-                                {
-                                    pInf.SetValue(Metadata, Results[pInf.Name][i].Value);
-                                    break;
-                                }
-                            }
-                        }
-                    }
+            //// Rellenamos los pInf vacíos con los posibles valores de ColorFontWordGroupsInfos.
+            //foreach (PropertyInfo pInf in MetadataType.GetProperties())
+            //    if (Results.ContainsKey(pInf.Name))
+            //        if (!metadatas[pInf.Name]) // Devuelve false si no se ha rellenado en el bucle anterior.
+            //        {
+            //            if (Results[pInf.Name].Count > 0)
+            //            {
+            //                for (int i = 0; i < Results[pInf.Name].Count; i++)
+            //                {
+            //                    if (Results[pInf.Name][i].Pattern.SourceTypeName == "ColorFontWordGroupsInfos")
+            //                    {
+            //                        pInf.SetValue(Metadata, Results[pInf.Name][i].Value);
+            //                        break;
+            //                    }
+            //                }
+            //            }
+            //        }
 
             return Metadata;
 

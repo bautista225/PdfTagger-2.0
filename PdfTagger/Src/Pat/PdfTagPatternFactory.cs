@@ -61,6 +61,22 @@ namespace PdfTagger.Pat
         }
 
         /// <summary>
+        /// Devuelve el nombre de archivo incluyendo la ruta
+        /// donde se almacenan los patrones para un documento
+        /// determinado.
+        /// </summary>
+        /// <param name="checkResult">Resultado de comparación.</param>
+        /// <returns>Ruta completa al archivo.</returns>
+        public static string GetPath(PdfCheckResult checkResult)
+        {
+            /*return $"{GetDirectory(compareResult.DocCategory)}"+
+                 $"{GetFileName(compareResult.DocID)}";*/
+
+            return $"C:\\ProgramData\\PdfTagger\\Patterns\\InvoicePdfTaggerOriginalModif\\" +
+                $"{GetFileName(checkResult.DocID)}";
+        }
+
+        /// <summary>
         /// Crea un nuevo almacén de patrones.
         /// </summary>
         /// <param name="compareResult">Resultado de una comparación.</param>
@@ -198,6 +214,28 @@ namespace PdfTagger.Pat
 
         }
 
+        /// <summary>
+        /// Actualiza los patrones acumulando el número de falsos positivos encontrados para cada uno.
+        /// </summary>
+        /// <param name="checkResult">Objeto que contiene los patrones con falsos positivos.</param>
+        /// <param name="path">Ruta del fichero XML donde para almacenar los patrones.</param>
+        private static void UpdateCheck(PdfCheckResult checkResult, string path)
+        {
+            PdfTagPatternStore store = GetStore(path);
+
+            List<PdfTagPattern> newPdfPatterns = new List<PdfTagPattern>();
+
+            foreach (var tagPattern in checkResult.ErrorPatterns)
+            {
+                int indexOriginal = store.PdfPatterns.IndexOf(tagPattern);
+
+                store.PdfPatterns[indexOriginal].ErrorsCount++;
+            }
+
+            store.PdfPatterns.Sort();
+            XmlParser.SaveAsXml(store, path);
+        }
+
         #endregion
 
         #region Public Methods
@@ -219,7 +257,18 @@ namespace PdfTagger.Pat
             else
                 Update(compareResult, file);
 
-        } 
+        }
+
+        /// <summary>
+        /// Actualiza el número de errores de los patrones.
+        /// </summary>
+        /// <param name="checkResult">Resuktado de una comprobación.</param>
+        public static void SaveCheck(PdfCheckResult checkResult)
+        {
+            string file = GetPath(checkResult);
+
+            UpdateCheck(checkResult, file);
+        }
 
         /// <summary>
         /// Recupera un archivo de almacén de patrones.

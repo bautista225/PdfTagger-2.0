@@ -171,7 +171,28 @@ namespace PdfTagger.Dat
                         // Grupos de palabras con su color, tamaño y nombre de fuente
                         foreach (var colorFontWordGroup in page.ColorFontWordGroups)
                             foreach (var match in parserHierarchy.GetMatches(pValue, colorFontWordGroup.Text))
-                                compareResult.ColorFontWordGroupsInfos.Add(new PdfCompareInfo(pdf, page, colorFontWordGroup, match, pInf));
+                            {
+                                iTextSharp.text.Rectangle rec = new iTextSharp.text.Rectangle(colorFontWordGroup.Llx, colorFontWordGroup.Lly, colorFontWordGroup.Urx, colorFontWordGroup.Ury);
+
+                                PdfColorFontTextRectangle tNA = new PdfColorFontTextRectangle(colorFontWordGroup.FillColor, colorFontWordGroup.StrokeColor, colorFontWordGroup.FontName, colorFontWordGroup.FontSize, rec)
+                                {
+                                    Type = "NA"
+                                };
+
+                                PdfColorFontTextRectangle tX = new PdfColorFontTextRectangle(colorFontWordGroup.FillColor, colorFontWordGroup.StrokeColor, colorFontWordGroup.FontName, colorFontWordGroup.FontSize, rec)
+                                {
+                                    Type = "X"
+                                };
+
+                                PdfColorFontTextRectangle tY = new PdfColorFontTextRectangle(colorFontWordGroup.FillColor, colorFontWordGroup.StrokeColor, colorFontWordGroup.FontName, colorFontWordGroup.FontSize, rec)
+                                {
+                                    Type = "Y"
+                                };
+
+                                compareResult.ColorFontWordGroupsInfos.Add(new PdfCompareInfo(pdf, page, tNA, match, pInf));
+                                compareResult.ColorFontWordGroupsInfos.Add(new PdfCompareInfo(pdf, page, tX, match, pInf));
+                                compareResult.ColorFontWordGroupsInfos.Add(new PdfCompareInfo(pdf, page, tY, match, pInf));
+                            }
 
                         // Grupos de palabras
                         foreach (var wordGroup in page.WordGroups)

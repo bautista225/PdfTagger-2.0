@@ -224,7 +224,7 @@ namespace PdfTagger.Dat
                     TxtRegex.Replace(_TextMatch.TextValue);
 
 
-            if(_PdfColorFontTextRectangle != null)
+            if (_PdfColorFontTextRectangle != null)
                 return new PdfTagPattern()
                 {
                     RegexPattern = regexPattern,
@@ -236,7 +236,8 @@ namespace PdfTagger.Dat
                     FillColor = _PdfColorFontTextRectangle.FillColor,
                     StrokeColor = _PdfColorFontTextRectangle.StrokeColor,
                     FontName = _PdfColorFontTextRectangle.FontName,
-                    FontSize = _PdfColorFontTextRectangle.FontSize.ToString()
+                    FontSize = _PdfColorFontTextRectangle.FontSize.ToString(),
+                    CFType = _PdfColorFontTextRectangle.Type
                 };
             else
                 return new PdfTagPattern()

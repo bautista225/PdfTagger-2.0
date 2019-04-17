@@ -31,6 +31,8 @@ namespace PdfTaggerTest
 
         public List<PdfTagPattern> ColorFontWordGroupsFiltered { get; set; }
 
+        public PdfCheckResult CheckResult { get; private set; }
+
         /// <summary>
         /// Carga un documento pdf.
         /// </summary>
@@ -100,6 +102,32 @@ namespace PdfTaggerTest
             {
                 ExtractionResult = Store.Extract(Pdf);
                 Invoice = ExtractionResult.Metadata as InvoiceMetadata;
+            }
+        }
+
+        /// <summary>
+        /// Intenta la extracción de datos mediante patrones aprendidos.
+        /// Realiza una comparación entre metadata ya revisado y el texto extraído por los patrones.
+        /// </summary>
+        public void ExtractWithCheck(Dictionary <string, string> invoiceMetadata)
+        {
+            try
+            {
+                Store = PdfTagPatternFactory.GetStore(Pdf);
+            }
+            catch
+            {
+            }
+            
+            CheckResult = new PdfCheckResult(Pdf, invoiceMetadata);
+
+            if (Store != null)
+            {
+                Console.WriteLine("Extrayendo");
+                CheckResult.ErrorPatterns = Store.ExtractToCheck(CheckResult);
+
+                Console.WriteLine("Guardando");
+                PdfTagPatternFactory.SaveCheck(CheckResult);
             }
         }
 
