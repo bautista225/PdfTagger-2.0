@@ -170,6 +170,9 @@ namespace PdfTagger.Pdf
                 segment = segment.TransformBy(riseOffsetTransform);
             }
 
+            string fontName = renderInfo.GetFont().PostscriptFontName; // Nombre de la fuente del texto.
+            string textoExtraido = renderInfo.GetText(); // Grupo de texto sobre el que estamos iterando.
+
             var ll = renderInfo.GetDescentLine().GetStartPoint(); // lower left
             var ur = renderInfo.GetAscentLine().GetEndPoint(); // upper right
 

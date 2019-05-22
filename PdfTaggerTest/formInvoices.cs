@@ -90,7 +90,7 @@ namespace PdfTaggerTest
 
         private InvoiceMetadata GetMetadataFromView()
         {
-            ExtraerDatosCSV();
+            //ExtraerDatosCSV();
 
             InvoiceMetadata invoice = new InvoiceMetadata();
 
@@ -599,10 +599,11 @@ namespace PdfTaggerTest
                 if (!isInTxt)
                     File.Move(file.FullName, @"C:\Users\Juan Bautista\Documents\Util\FicherosPdfTagger\FACTURAS EXCEPCIÓN\" + file.Name);
 
-                Console.WriteLine("Empieza GC");
+                Console.WriteLine("Empieza Garbage Collector\n");
                 System.GC.Collect();
+
                 System.GC.WaitForPendingFinalizers();
-                Console.WriteLine("Finaliza GC\n\n\n");
+                Console.WriteLine("Finaliza Garbage Collector\n\n\n");
             }
         }
 

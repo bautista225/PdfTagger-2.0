@@ -94,8 +94,9 @@ namespace PdfTaggerTest
             {
                 Store = PdfTagPatternFactory.GetStore(Pdf);
             }
-            catch
+            catch (Exception ex)
             {
+                var z = ex;
             }
 
             if (Store != null)

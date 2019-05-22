@@ -47,7 +47,7 @@ namespace PdfTagger.Dat.Txt
     public interface IConverter<T>
     {
 
-        #region Public Methods
+        #region Public Properties
 
         /// <summary>
         /// Valor del tipo T obtenido mediante

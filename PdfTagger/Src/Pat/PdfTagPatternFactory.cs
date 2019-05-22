@@ -110,7 +110,7 @@ namespace PdfTagger.Pat
             {
                 PdfTagPattern pattern = info.GetPdfTagPattern();
                 pattern.SourceTypeName = "WordGroupsInfos";
-
+                
                 if (store.PdfPatterns.IndexOf(pattern) ==-1)
                     store.PdfPatterns.Add(pattern);
             }

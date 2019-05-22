@@ -73,7 +73,8 @@ namespace PdfTagger.Pdf
                     colorFontRectangleStrategy.GetWordGroups(true), pdfText, colorFontRectangleStrategy.GetColorFontWordGroups())
                 {
                     PageHeight = rectSize.Height,
-                    PageWidth = rectSize.Width
+                    PageWidth = rectSize.Width,
+                    PdfPageN = page
                 });
 
             }

@@ -114,6 +114,11 @@ namespace PdfTagger.Pdf
         /// </summary>
         public float PageWidth { get; set; }
 
+        /// <summary>
+        /// Número de página en el PDF.
+        /// </summary>
+        public int PdfPageN { get; set; }
+
         #endregion
 
         #region Public Methods

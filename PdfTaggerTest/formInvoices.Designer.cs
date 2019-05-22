@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.mnMainOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMainAnalyze = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +41,7 @@
             this.analizarFicherosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analizarListaFicherosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extraerDatosFicherosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extraerYComprobarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbMain = new System.Windows.Forms.ToolStrip();
             this.sPnH = new System.Windows.Forms.SplitContainer();
             this.sPnV = new System.Windows.Forms.SplitContainer();
@@ -161,9 +162,6 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbColorFontWordGroups = new System.Windows.Forms.TabPage();
             this.grdColorFontWordGroups = new System.Windows.Forms.DataGridView();
-            this.wBr = new System.Windows.Forms.WebBrowser();
-            this.stMain = new System.Windows.Forms.StatusStrip();
-            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,7 +174,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extraerYComprobarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wBr = new System.Windows.Forms.WebBrowser();
+            this.stMain = new System.Windows.Forms.StatusStrip();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.mnMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sPnH)).BeginInit();
             this.sPnH.Panel1.SuspendLayout();
@@ -270,6 +270,13 @@
             this.extraerDatosFicherosToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.extraerDatosFicherosToolStripMenuItem.Text = "Extraer datos ficheros";
             this.extraerDatosFicherosToolStripMenuItem.Click += new System.EventHandler(this.extraerDatosFicherosToolStripMenuItem_Click);
+            // 
+            // extraerYComprobarToolStripMenuItem
+            // 
+            this.extraerYComprobarToolStripMenuItem.Name = "extraerYComprobarToolStripMenuItem";
+            this.extraerYComprobarToolStripMenuItem.Size = new System.Drawing.Size(156, 24);
+            this.extraerYComprobarToolStripMenuItem.Text = "Extraer y comprobar";
+            this.extraerYComprobarToolStripMenuItem.Click += new System.EventHandler(this.extraerYComprobarToolStripMenuItem_Click);
             // 
             // tbMain
             // 
@@ -1221,14 +1228,14 @@
             this.RegexPattern,
             this.WordGroupPatt,
             this.WordGroupResult});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdWordGroups.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdWordGroups.DefaultCellStyle = dataGridViewCellStyle1;
             this.grdWordGroups.Location = new System.Drawing.Point(12, 23);
             this.grdWordGroups.Margin = new System.Windows.Forms.Padding(4);
             this.grdWordGroups.MultiSelect = false;
@@ -1302,14 +1309,14 @@
             this.dataGridViewTextBoxColumn5,
             this.PdfTextPatt,
             this.PdfTextResult});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPdfText.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPdfText.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdPdfText.Location = new System.Drawing.Point(12, 23);
             this.grdPdfText.Margin = new System.Windows.Forms.Padding(4);
             this.grdPdfText.MultiSelect = false;
@@ -1391,14 +1398,14 @@
             this.StrokeColor,
             this.FontName,
             this.FontSize});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPatternStore.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPatternStore.DefaultCellStyle = dataGridViewCellStyle3;
             this.grdPatternStore.Location = new System.Drawing.Point(12, 23);
             this.grdPatternStore.Margin = new System.Windows.Forms.Padding(4);
             this.grdPatternStore.Name = "grdPatternStore";
@@ -1588,14 +1595,14 @@
             this.Column4,
             this.Column5,
             this.dataGridViewTextBoxColumn21});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdColorFontWordGroups.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdColorFontWordGroups.DefaultCellStyle = dataGridViewCellStyle4;
             this.grdColorFontWordGroups.Location = new System.Drawing.Point(12, 23);
             this.grdColorFontWordGroups.Margin = new System.Windows.Forms.Padding(4);
             this.grdColorFontWordGroups.MultiSelect = false;
@@ -1604,30 +1611,6 @@
             this.grdColorFontWordGroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdColorFontWordGroups.Size = new System.Drawing.Size(709, 624);
             this.grdColorFontWordGroups.TabIndex = 1;
-            // 
-            // wBr
-            // 
-            this.wBr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wBr.Location = new System.Drawing.Point(0, 0);
-            this.wBr.Margin = new System.Windows.Forms.Padding(4);
-            this.wBr.MinimumSize = new System.Drawing.Size(27, 25);
-            this.wBr.Name = "wBr";
-            this.wBr.Size = new System.Drawing.Size(834, 744);
-            this.wBr.TabIndex = 0;
-            // 
-            // stMain
-            // 
-            this.stMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.stMain.Location = new System.Drawing.Point(0, 96);
-            this.stMain.Name = "stMain";
-            this.stMain.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.stMain.Size = new System.Drawing.Size(1620, 22);
-            this.stMain.TabIndex = 0;
-            this.stMain.Text = "statusStrip1";
-            // 
-            // dlgOpen
-            // 
-            this.dlgOpen.Filter = "Archivos pdf|*pdf";
             // 
             // dataGridViewTextBoxColumn15
             // 
@@ -1694,12 +1677,29 @@
             this.dataGridViewTextBoxColumn21.HeaderText = "ColorFontWordGroupResult";
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             // 
-            // extraerYComprobarToolStripMenuItem
+            // wBr
             // 
-            this.extraerYComprobarToolStripMenuItem.Name = "extraerYComprobarToolStripMenuItem";
-            this.extraerYComprobarToolStripMenuItem.Size = new System.Drawing.Size(156, 24);
-            this.extraerYComprobarToolStripMenuItem.Text = "Extraer y comprobar";
-            this.extraerYComprobarToolStripMenuItem.Click += new System.EventHandler(this.extraerYComprobarToolStripMenuItem_Click);
+            this.wBr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wBr.Location = new System.Drawing.Point(0, 0);
+            this.wBr.Margin = new System.Windows.Forms.Padding(4);
+            this.wBr.MinimumSize = new System.Drawing.Size(27, 25);
+            this.wBr.Name = "wBr";
+            this.wBr.Size = new System.Drawing.Size(834, 744);
+            this.wBr.TabIndex = 0;
+            // 
+            // stMain
+            // 
+            this.stMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.stMain.Location = new System.Drawing.Point(0, 96);
+            this.stMain.Name = "stMain";
+            this.stMain.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.stMain.Size = new System.Drawing.Size(1620, 22);
+            this.stMain.TabIndex = 0;
+            this.stMain.Text = "statusStrip1";
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.Filter = "Archivos pdf|*pdf";
             // 
             // formInvoices
             // 

@@ -229,7 +229,6 @@ namespace PdfTagger.Dat
                 {
                     RegexPattern = regexPattern,
                     Position = _TextMatch.Position,
-                    IsLastPage = (PdfPageN == _Pdf.PdfUnstructuredPages.Count),
                     PdfPageN = PdfPageN,
                     PdfRectangle = rectangle,
                     MetadataItemName = MetadataItemName,
@@ -244,7 +243,6 @@ namespace PdfTagger.Dat
                 {
                     RegexPattern = regexPattern,
                     Position = _TextMatch.Position,
-                    IsLastPage = (PdfPageN == _Pdf.PdfUnstructuredPages.Count),
                     PdfPageN = PdfPageN,
                     PdfRectangle = rectangle,
                     MetadataItemName = MetadataItemName,
