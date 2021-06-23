@@ -110,7 +110,7 @@ namespace PdfTaggerTest
         /// Intenta la extracción de datos mediante patrones aprendidos.
         /// Realiza una comparación entre metadata ya revisado y el texto extraído por los patrones.
         /// </summary>
-        public void ExtractWithCheck(Dictionary <string, string> invoiceMetadata)
+        public void ExtractWithCheck(IMetadata metadata)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace PdfTaggerTest
             {
             }
             
-            CheckResult = new PdfCheckResult(Pdf, invoiceMetadata);
+            CheckResult = new PdfCheckResult(Pdf, metadata);
 
             if (Store != null)
             {

@@ -19,7 +19,7 @@ namespace PdfTagger.Dat
         /// <summary>
         /// Datos estructurados sobre los que comparar.
         /// </summary>
-        public Dictionary<string, string> InvoiceMetadata { get; set; }
+        public IMetadata Metadata { get; set; }
 
         /// <summary>
         /// Información desestructurada de un archivo PDF.
@@ -51,11 +51,11 @@ namespace PdfTagger.Dat
         /// Constructor de la clase PdfCheckResult.
         /// </summary>
         /// <param name="pdf">Información dessestructurada de un PDF.</param>
-        /// <param name="invoiceMetadata">Metadatos correctos procedentes de una B.DD.</param>
-        public PdfCheckResult(PdfUnstructuredDoc pdf, Dictionary<string, string> invoiceMetadata)
+        /// <param name="metadata">Metadatos correctos procedentes de una B.DD.</param>
+        public PdfCheckResult(PdfUnstructuredDoc pdf, IMetadata metadata)
         {
             Pdf = pdf;
-            InvoiceMetadata = invoiceMetadata;
+            Metadata = metadata;
         }
 
         #endregion

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\Dependencies\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -81,10 +84,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Documents\GitHub\itextsharp\src\core\itextsharp.csproj">
-      <Project>{84c4fdd9-3ed7-453b-b9da-b3ed52cb071c}</Project>
-      <Name>itextsharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PdfTagger\PdfTagger.csproj">
       <Project>{d32a1802-b555-43d4-bb04-a49f6dfecc11}</Project>
       <Name>PdfTagger</Name>

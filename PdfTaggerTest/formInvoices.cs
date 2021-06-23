@@ -666,7 +666,9 @@ namespace PdfTaggerTest
             var lines = txt.Split('\n');
 
             string[] data;
-            Dictionary<string, string> invoiceMetadata = new Dictionary<string, string>();
+            Dictionary<string, string> inMet = new Dictionary<string, string>();
+
+            InvoiceMetadata invoiceMetadata = new InvoiceMetadata();
 
             foreach (var line in lines)
             {
@@ -690,9 +692,12 @@ namespace PdfTaggerTest
                     }
                     else
                     {
+                        invoiceMetadata.BuyerPartyID = data[5];
                         invoiceMetadata.Add("BuyerPartyID", data[5]);
                         invoiceMetadata.Add("InvoiceNumber", data[10]);
+                        invoiceMetadata.InvoiceNumber = data[10];
                         invoiceMetadata.Add("IssueDate", data[9]);
+                        invoiceMetadata.IssueDate = data[9]; // ((DateTime)pInf.GetValue(invoice)).ToString("dd/MM/yyyy");
                         invoiceMetadata.Add("GrossAmount", data[12]);
                         invoiceMetadata.Add("CurrencyCode", data[13]);
                     }

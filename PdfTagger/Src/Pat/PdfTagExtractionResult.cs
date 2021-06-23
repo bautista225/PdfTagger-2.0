@@ -135,7 +135,7 @@ namespace PdfTagger.Pat
         /// <summary>
         /// Comprobamos que los datos insertados sean los correctos mediante datos de entrada revisados, actualizando posteriormente el registro de errores de los patrones.
         /// </summary>
-        public List<PdfTagPattern> CheckWithRightMetadata(Dictionary<string, string> invoiceMetadata)
+        public List<PdfTagPattern> CheckWithRightMetadata(IMetadata metadata)
         {
             foreach (var resulList in Results)
                 resulList.Value.Sort();
@@ -144,12 +144,14 @@ namespace PdfTagger.Pat
 
             foreach (PropertyInfo pInf in MetadataType.GetProperties())
             {
-                if (Results.ContainsKey(pInf.Name) && invoiceMetadata.ContainsKey(pInf.Name))
+                var property = pInf.GetValue(metadata);
+
+                if (Results.ContainsKey(pInf.Name))
                     if (Results[pInf.Name].Count > 0)
                     {
                         for (int i = 0; i < Results[pInf.Name].Count; i++)
                         {
-                            if (!Results[pInf.Name][i].Value.Equals(invoiceMetadata[pInf.Name]))
+                            if (!Results[pInf.Name][i].Value.Equals(property))
                                 patterns.Add(Results[pInf.Name][i].Pattern);
                         }
                     }
